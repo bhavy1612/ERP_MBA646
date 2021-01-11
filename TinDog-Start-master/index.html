@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ERP MBA646</title>
+  <meta name="copyright" content="Sameer Choudhary" />
+  <!--google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu&display=swap" rel="stylesheet">
+
+  <script defer src="https://friconix.com/cdn/friconix.js"></script>
+
+  <!--bootstrap scripts-->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--css stylesheets-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<section id="title">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+    <h3 class="navbar-brand">ERP MBA646</h3>
+    <!-- <a class="navbar-brand" href="">ERP MBA646</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="navbar-item">
+          <a class="nav-link" href="#orders">Order list</a>
+      </li>
+        <li class="navbar-item">
+            <a class="nav-link" href="#Inventory_in">Inventory In</a>
+        </li>
+        <li class="navbar-item">
+            <a class="nav-link" href="#Inventory_Out">Inventory Out</a>
+        </li>
+        <li class="navbar-item">
+            <a class="nav-link" href="#Inventory_Stock">Inventory Stock</a>
+        </li>
+        <li class="navbar-item">
+            <a class="nav-link" href="#Demand">Demand List</a>
+        </li>
+    </ul>
+    </div>
+</nav>
+
+</section>
+
+
+
+  <section id="orders">
+    <div class="container-fluid">
+      <h3 >Place a new Order</h3>
+      <form class="mt-5" id="orderForm">
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="ordermaterialid">Material</label>
+          <select  name="ordermaterialid" id="material_name" class="col-5 ">
+            <option selected>Select Material</option>
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="orderquantity">Quantity</label>
+          <input type="number" name="orderquantity"class="col-5" />
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="orderprice">Price</label>
+          <input type="number" name="orderprice" class="col-5"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="orderphoneno">Supplier phone No</label>
+          <input type="number" name="orderphoneno" class="col-5"/>
+        </div>
+        <div class="form-group row mt-3">
+          <input class="btn btn-primary offset-5 " type = "submit" name = "Place Order" value = "Submit" />
+          <input class="btn btn-primary ml-2" type = "reset" name = "reset form"  value = "Reset" />
+        </div>        
+      </form>
+    </div>
+
+    <div class="container-fluid">
+      <h3>Order Recieved</h3>
+      <form class="mt-5" id="verifyForm">
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="orderverfiychalan">Challan Number</label>
+          <input type="number" name="orderverfiychalan"  class="col-5"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="orderverifyname">Verified By Name</label>
+          <input type="text" name="orderverifyname"  class="col-5"/>
+        </div>
+        <div class="form-group row mt-3">
+          <input class="btn btn-primary offset-5 " type = "submit" name = "Place Order" value = "Submit" />
+          <input class="btn btn-primary ml-2" type = "reset" name = "reset form"  value = "Reset" />
+        </div>
+        <br />
+      </form>
+      
+
+    </div>
+
+    <div class="container-fluid">
+      <h3>Order History</h3>
+      <table class="table table-bordered table-dark mt-5" id="orderTable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Challan No</th> 
+      <th scope="col">Material Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Cost (per Unit)</th>
+      <th scope="col">Supplier No</th>
+      <th scope="col">Order Date</th>
+    </tr>
+  </thead>
+      <tbody id="ordertbody">
+      </tbody>
+</table>
+    </div>
+  </section>
+
+
+  <section id="Inventory_in">
+    <div class="container-fluid">
+      <h3>Inventory-In</h3>
+      <table class="table table-bordered table-dark mt-5" id="inventoryinTable">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Material name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Order Recieved Date</th>
+              <th scope="col">Verified By</th>
+            </tr>
+        </thead>
+          <tbody id="inventorytbody">
+            <tr>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <section id="Inventory_Stock">
+    <div class="container-fluid">
+      <h3>Add a new material</h3>
+      <form id="materialForm" class="mt-5">
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="newmaterialname">Material Name</label>
+          <input type="text" name="newmaterialname"  class="col-5"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="newmaterialquantity">Quantity</label>
+          <input type="number" name="newmaterialquantity"  class="col-5"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="newmaterialthreshold">Threshold</label>
+          <input type="number" name="newmaterialthreshold"  class="col-5"/>
+        </div>
+        <div class="form-group row mt-5">
+          <input class="btn btn-primary offset-5 col-1" type = "submit" name = "Place Order" value = "Submit" />
+        </div>
+      </form>
+      <span></span>
+
+    </div>
+
+    <div class="container-fluid">
+      <h3>Inventory-Stock</h3>
+      <table class="table table-bordered table-dark" id="inventoryStock">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Material Name</th>
+      <th scope="col">Current Quantity</th>
+      <th scope="col">Threshold</th>
+    </tr>
+  </thead>
+      <tbody id="inventorystocktbody">
+        
+      </tbody>
+</table>
+    </div>
+
+    <input class="btn btn-primary" type = "submit" name = "Place Order" value = "Filter" id="filterbutton" />
+    <div class="container-fluid" id="filterinventory" style="display: none;">
+      <h3>Inventory-Stock</h3>
+      <table class="table table-bordered table-dark" id="warninginventoryStock">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Material Name</th>
+      <th scope="col">Current Quantity</th>
+      <th scope="col">Threshold</th>
+    </tr>
+  </thead>
+      <tbody id="warninginventoryStocktbody">
+        
+      </tbody>
+</table>
+    </div>
+
+  </section>
+
+  <section id="Inventory_Out">
+    <div class="container-fluid">
+      <h3>Exit form</h3>
+      <form action="javascript:alert( 'Order Placed!!' );"  class="mt-5"id="outForm">
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="outmaterialid">Material</label>
+          <select  name="outmaterialid" id="material_name1" class="col-5 ">
+            <option selected>Select Material</option>
+          </select>
+        </div>  
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="outquantity">Quantity</label>
+          <input type="number" name="outquantity"  class="col-5"/>
+        </div>  
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="outverfname">Verified By </label>
+          <input type="text" name="outverfname"  class="col-5"/>
+        </div>
+        <div class="form-group row mt-3">
+          <input class="btn btn-primary offset-5 " type = "submit" name = "Place Order" value = "Submit" />
+          <input class="btn btn-primary ml-2" type = "reset" name = "reset form"  value = "Reset" />
+        </div>
+       
+      </form>
+      <span></span>
+
+    </div>
+
+    <div class="container-fluid">
+      <h3>Inventory Out History</h3>
+      <table class="table table-bordered table-dark" id="outTable">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Material Name</th>
+            <th scope="col">Demand Quantity</th>
+            <th scope="col">Verified by</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+  <!-- <section id="Demand">
+    <div class="container-fluid">
+      <h3>Demand Request form</h3>
+      <form id="myForm" class="mt-5">
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="demandmaterialid">Material</label>
+          <select  name="demandmaterialid" id="material_name2" class="col-5 ">
+            <option selected>Select Material</option>
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="demandquantity">Quantity</label>
+          <input type="number" name="demandquantity"  class="col-5"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 offset-2 text-center" for="demandName">Requester Name</label>
+          <input type="text" name="demandName"  class="col-5"/>
+        </div>
+        <div class="form-group row mt-3">
+          <input class="btn btn-primary offset-5 " type = "submit" name = "Place Order" value = "Submit" />
+          <input class="btn btn-primary ml-2" type = "reset" name = "reset form"  value = "Reset" />
+        </div>
+      </form>
+    </div>
+
+    <div class="container-fluid">
+      <h3>Demand Request History</h3>
+        <table class="table table-bordered table-dark mt-5" id="demandTable">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Material Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Ordered By</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+          </table>
+    </div>
+  </section> -->
+
+  <script src="./js/filterInventory.js"></script>
+  <script src="./js/loadMaterial.js"></script>
+  <script src="./js/addNewMaterial.js"></script>
+  <script src='./js/takingOutMaterial.js'></script>
+  <script src="./js/demandSubmit.js"></script>
+  <script src="./js/orderPlaced.js"></script>
+  <script src="./js/orderVerified.js" ></script>
+  <script>
+      function myFunction() {
+      document.getElementById("Verifyform").classList.toggle("show");
+      }
+  </script>
+
+
+</body>
+
+</html>
